@@ -1,8 +1,7 @@
+<div>
+
 #### Project Workflow
 
-
-<div>
-    
 Twitter represents a fundamentally new instrument to make social measurements. Millions of people voluntarily express opinions across any topic imaginable --- this data source is incredibly valuable for both research and business.
 
 For example, researchers have shown that the "mood" of communication on twitter [**reflects biological rhythms**](http://www.nytimes.com/2011/09/30/science/30twitter.html) and can even used to [**predict the stock market**](http://arxiv.org/pdf/1010.3003&embedded=true). A student here at UW used geocoded tweets to [**plot a map of locations where "thunder" was mentioned in the context of a storm system in Summer 2012.**](http://cliffmass.blogspot.com/2012/07/thunderstorm-fest.html)
@@ -45,7 +44,7 @@ In most circumstances, you will be able to use a unicode object just like a stri
 
 If you encounter an error involving printing unicode, you can use the [encode](http://docs.python.org/2/library/stdtypes.html#str.encode) method to properly print the international characters, like this:
 
-<pre>unicode_string = u"aaaÃ Ã§Ã§Ã§Ã±Ã±Ã±"
+<pre>unicode_string = u"aaaàçççñññ"
 encoded_string = unicode_string.encode('utf-8')
 print encoded_string
 </pre>
@@ -164,7 +163,7 @@ The order of your output does not matter.
 
 What to turn in: The file `term_sentiment.py`
 
-How we will grade Part 3: We will run your script on a file that contains strongly positive and strongly negative tweets and verify that the non-sentiment-carrying terms in the strongly positive tweets are assigned a higher score than the non-sentiment-carrying terms in negative tweets.Â  Your scores need not (and likely will not) exactly match any specific solution.
+How we will grade Part 3: We will run your script on a file that contains strongly positive and strongly negative tweets and verify that the non-sentiment-carrying terms in the strongly positive tweets are assigned a higher score than the non-sentiment-carrying terms in negative tweets.  Your scores need not (and likely will not) exactly match any specific solution.
 
 If the grader is returning "Formatting error: <line of="" output="">", make note of the line of text returned in the message. This line corresponds to a line of your output. The grader will generate this error if `line.split()` does not return **exactly two items**. One common source of this error is to not remove the two calls to the "lines" function in the solution template; this function prints the number of lines in each file. Make sure to check the first two lines of your output!</line>
 
@@ -220,7 +219,7 @@ You can ignore any tweets for which you cannot assign a location in the United S
 
 In this file, each line is a Tweet object, as[described in the twitter documentation](https://dev.twitter.com/docs/platform-objects/tweets).
 
-Note: Not every tweet will have a `text` field --- again, real data is dirty! Be prepared to debug, and feel free to throw out tweets that your code can't handle to get something working.Â  For example, you might choose to ignore all non-English tweets.
+Note: Not every tweet will have a `text` field --- again, real data is dirty! Be prepared to debug, and feel free to throw out tweets that your code can't handle to get something working.  For example, you might choose to ignore all non-English tweets.
 
 Your script should print the two letter state abbreviation of the state with the highest average tweet sentiment to stdout.
 
