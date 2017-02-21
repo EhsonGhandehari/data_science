@@ -1,0 +1,60 @@
+---
+title: "Hospital Quality"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r package_dependencies, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+
+# Make sure all the necessary packages are installed.
+
+if(!require("magrittr")) {
+                message("installing the 'magrittr' package")
+                install.packages("magrittr")
+        }
+
+if(!require("dplyr")) {
+                message("installing the 'dplyr' package")
+                install.packages("dplyr")
+        }
+
+if(!require("plyr")) {
+                message("installing the 'plyr' package")
+                install.packages("plyr")
+        }
+```
+
+```{r LoadData, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+
+# In the following script the active R file finds its location and sets the working directory over there.
+
+address<-system("find /Users -name hospital_quality_report_EMG.Rmd",intern=TRUE)
+length1<-nchar(address)
+length2<-nchar("hospital_quality_report_EMG.Rmd")+1
+address<-paste0(strtrim(address, length1-length2)[1])
+setwd(address)
+
+
+# Now let's import the data
+outcome <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+outcome[, 11] <- as.numeric(outcome[, 11])
+outcome[ ,17] <- as.numeric(outcome[, 17])
+outcome[ ,23] <- as.numeric(outcome[, 23])
+
+```
+
+
+```{r mortality_histogram, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 1:"}
+
+## make a simple histogram of the 30-day death rates from heart attack (column 11 in the outcome dataset). We may get a warning about NAs being introduced; that is okay.
+
+hist(outcome[, 11],xlab="30-day Death Rate from Heart Attack", main="Histogram of Heart Attack Mortality")
+```
+
+Figure 1. Histogram of the 30-day death rates from heart attack
+
+
+
