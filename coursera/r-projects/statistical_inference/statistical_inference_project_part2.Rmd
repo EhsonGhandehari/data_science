@@ -1,0 +1,26 @@
+---
+title: "Statistical Inference Course Project-Part2"
+author: "Ehson Ghandehari"
+date: "January 21, 2016"
+output: pdf_document
+---
+
+The **ToothGrowth** data was loaded into R. As summarized below, the dataset consists of 60 measurements of teeth length (the output) in each of 10 guinea pigs at three different Vitamin C dosages (i.e. 0.5, 1, and 2 mg), under two delivery methods: orange juice (OJ) or ascorbic acid (VC).  A basic exploratory data analysis is presented in Figure 1. It must be noted that the dots are outliers.
+
+
+
+```{r data_summary, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, fig.height=7, fig.width=7, fig.cap="Figure 1:"}
+
+# loading all the necessary packages for this analysis
+library(ggplot2)
+require(gridExtra)
+ToothGrowth$dose=factor(ToothGrowth$dose)
+Fig1<-ggplot(subset(ToothGrowth,supp=="OJ"),aes(x=dose,y=len,col=dose))+geom_boxplot()+theme_classic()+labs(y="Length", x="Dose (mg)")+
+  annotate("text",x=1,y=30,label="OJ Method")
+Fig2<-ggplot(subset(ToothGrowth,supp=="VC"),aes(x=dose,y=len,col=dose))+geom_boxplot()+theme_classic()+labs(y="Length", x="Dose (mg)")+
+  annotate("text",x=1,y=30,label="VC Method")
+
+grid.arrange(Fig1,Fig2,nrow=2)
+```
+
+Figure1. A visual comparison of teeth length at different dosages and supply method.
